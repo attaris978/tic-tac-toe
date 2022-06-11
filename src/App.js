@@ -13,18 +13,25 @@ function App() {
     let horizontal = Array.from({length: 3}, v => []);
     let vertical = Array.from({length: 3}, v => []);
     let diagonal = Array.from({length: 2}, v => []);
-    // console.log("horizontal", horizontal, "vertical", vertical, "diagonal", diagonal)
     currentBoard.forEach( (v,i) => {
-      vertical[i % 3 === 0 ? 0 : i % 3 === 1 ? 2 : 1].push(v);      
+      vertical[i % 3 === 0 ? 0 : i % 3 === 2 ? 2 : 1].push(v);      
       horizontal[Math.floor(i / 3)].push(v);
       if (i % 4 === 0) diagonal[0].push(v);
       if (i % 2 === 0 && i > 0 && i < 8) diagonal[1].push(v);
-      // console.log("horizontal", horizontal, "vertical", vertical, "diagonal", diagonal)
     })
-    setSets([...vertical, ...horizontal, ...diagonal]);
+    let parsedBoard = [...horizontal, ...vertical, ...diagonal];
+    return parsedBoard;
   }
   useEffect( () => {
-    parseBoard(board)    
+    const testSets = parseBoard(board);
+    setSets(testSets);
+    console.log(testSets);
+    testSets.forEach( set => {    
+    if (set.reduce( (p,v,i,a) => p && /*(v === "X" || v === "O")*/ v && (i === 0 || v === a[i-1]) ? true : false, true )) {
+      console.log("Winner!")
+      return;
+    }
+  })
   },[board])
 
   const selectCell = (e,index) => {
@@ -50,7 +57,6 @@ function App() {
       <div id="board">
       {buildBoard(board)}
       </div>
-      <div onClick={() => console.log("hello")}>testing</div>
     </div>
   );
 }
