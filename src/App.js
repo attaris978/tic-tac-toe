@@ -7,8 +7,9 @@ function App() {
 
   const [board, setBoard] = useState(emptyBoard);
   const [userTurn, setUserTurn] = useState(Math.random() < .5 ? true : false);
-  const [sets, setSets] = useState([])
-  const [message, setMessage] = useState(`${userTurn ? "❌" : "⭕"} Goes First!`)
+  const [sets, setSets] = useState([]);
+  const [message, setMessage] = useState(`${userTurn ? "❌" : "⭕"} Goes First!`);
+  const [winner, setWinner] = useState(null);
 
   const parseBoard = currentBoard => {
     let horizontal = Array.from({length: 3}, v => []);
@@ -24,30 +25,33 @@ function App() {
     return parsedBoard;
   }
   useEffect( () => {
-    const testSets = parseBoard(board);
+   
+  },[board, winner])
+
+  const winnerCheck = testBoard => {
+    let testSets = parseBoard(testBoard);
     setSets(testSets);
-    console.log(testSets);
     testSets.forEach( set => {    
     if (set.reduce( (p,v,i,a) => p && v && (i === 0 || v === a[i-1]) ? true : false, true )) {
-      console.log("Winner!")
+      setWinner(userTurn ? "❌" : "⭕");
       return;
     }
   })
-  },[board])
-
+  }
   const selectCell = (e,index) => {
-    if (!board[index]) {
+    if (!board[index] && !winner) {
       let updatedBoard = [...board];
       updatedBoard[index] = userTurn ? "❌" : "⭕";
       setBoard(updatedBoard);
-      setUserTurn(!userTurn);
-      setMessage(`${userTurn ? "⭕" : "❌" }'s Turn to Pick!`)
-    }
+      winnerCheck(updatedBoard);
+      if (!winner) setUserTurn(!userTurn);      
+      if (!winner) setMessage(`${userTurn ? "⭕" : "❌" }'s Turn to Pick!`)       
+    } 
   }
 
   return (
     <div className="App">   
-      <h1>{message}</h1>   
+      <h1>{!winner ? message : `${winner} Is the Winner!`}</h1>   
       <div id="board">
       <Board board={board} selectCell={selectCell} />
       </div>
