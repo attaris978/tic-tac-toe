@@ -1,13 +1,14 @@
 import './App.css';
 import {useState, useEffect} from 'react';
-import Cell from './components/Cell';
-const emptyBoard = Array.from({length: 9})//, (v,i) => i);
+import Board from './components/Board';
+const emptyBoard = Array.from({length: 9});
 
 function App() {
 
   const [board, setBoard] = useState(emptyBoard);
-  const [userTurn, setUserTurn] = useState(true)//(Math.random() < .5 ? true : false);
+  const [userTurn, setUserTurn] = useState(Math.random() < .5 ? true : false);
   const [sets, setSets] = useState([])
+  const [message, setMessage] = useState(`${userTurn ? "❌" : "⭕"} Goes First!`)
 
   const parseBoard = currentBoard => {
     let horizontal = Array.from({length: 3}, v => []);
@@ -27,7 +28,7 @@ function App() {
     setSets(testSets);
     console.log(testSets);
     testSets.forEach( set => {    
-    if (set.reduce( (p,v,i,a) => p && /*(v === "X" || v === "O")*/ v && (i === 0 || v === a[i-1]) ? true : false, true )) {
+    if (set.reduce( (p,v,i,a) => p && v && (i === 0 || v === a[i-1]) ? true : false, true )) {
       console.log("Winner!")
       return;
     }
@@ -35,27 +36,20 @@ function App() {
   },[board])
 
   const selectCell = (e,index) => {
-    console.log(board[index] ? true : false, board[index])
-    if (userTurn && !board[index]) {
+    if (!board[index]) {
       let updatedBoard = [...board];
-      updatedBoard[index] = "X"
+      updatedBoard[index] = userTurn ? "❌" : "⭕";
       setBoard(updatedBoard);
-
+      setUserTurn(!userTurn);
+      setMessage(`${userTurn ? "⭕" : "❌" }'s Turn to Pick!`)
     }
   }
 
-  const buildBoard = currentBoard => {
-    let cells = currentBoard.map( (v,i) => <Cell index={i} selectCell={selectCell} board = {board} key={i}>{v}</Cell>);
-    let rows = Array.from({length: 3}, v=> []);
-    cells.forEach( (v,i) => rows[Math.floor(i / 3)].push(v))
-    return rows.map( (v,i) => <div key={`r${i}`} className="row">{v}</div>)
-    }
-  
-
   return (
-    <div className="App">      
+    <div className="App">   
+      <h1>{message}</h1>   
       <div id="board">
-      {buildBoard(board)}
+      <Board board={board} selectCell={selectCell} />
       </div>
     </div>
   );

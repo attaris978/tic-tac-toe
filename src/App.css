@@ -1,5 +1,7 @@
 body {
   background-color: #282c34;
+  color: white;
+  box-sizing: border-box;
 }
 .App {
   width: 100vw;
@@ -7,22 +9,11 @@ body {
   text-align: center;  
 }
 
-/* .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-} */
-/* 
-.App-link {
-  color: #61dafb;
-} */
-
 #board {
+  margin: auto;
+  min-width: 150px;
+  width: 60vw;
+  height: 60vw;
   display:flex;
   flex-flow: column nowrap;
   align-items: center;
@@ -31,10 +22,32 @@ body {
 
 .row {
   display:flex;
+  width:100%;
 }
 
 .cell {
-  width: 50px;
-  height: 50px;
-  background-color: lightgray;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:20vw;
+  height:20vh;
+  background-color: lightblue;
+  border: 5px solid navy;
+  font-size: 10vh;
+}
+
+.left {
+  border-left: none;
+}
+
+.right {
+  border-right: none;
+}
+
+.bottom {
+  border-bottom: none;
+}
+
+.top {
+  border-top: none;
 }

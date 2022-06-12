@@ -1,9 +1,16 @@
 const Cell = (props) => {
+    const {index, board, selectCell} = props;
+    const classes = 'cell '.concat(
+        index % 3 === 0 ? 'left ' : '',
+        index % 3 === 2 ? 'right ' : '', 
+        index < 3 ? 'top ' : '', 
+        index > 5 ? 'bottom' : '')              
+ 
     return (
-        <div className="cell" 
-        onClick={e => props.selectCell(e,props.index)} 
-        key={props.index}>
-          <p>{props.board[props.index]}</p>
+        <div className={classes} 
+        onClick={e => selectCell(e,index)} 
+        key={index}>
+          <p>{board[index]}</p>
         </div>
     )
 }
