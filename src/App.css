@@ -12,8 +12,11 @@ body {
 #board {
   margin: auto;
   min-width: 150px;
-  width: 60vw;
-  height: 60vw;
+  min-height:150px;
+  max-width:60vh;
+  max-height:60vh;
+  width:60vw;
+  height:60vw;
   display:flex;
   flex-flow: column nowrap;
   align-items: center;
@@ -29,11 +32,17 @@ body {
   display:flex;
   justify-content:center;
   align-items:center;
+  max-width:20vh;
+  max-height:20vh;
   width:20vw;
-  height:20vh;
+  height:20vw;
   background-color: lightblue;
-  border: 5px solid navy;
+  border: .3vw solid navy;
   font-size: 10vh;
+  transition: background-color 1s ease-out
+}
+.cell:hover {
+  background-color:purple;
 }
 
 .left {
@@ -51,3 +60,4 @@ body {
 .top {
   border-top: none;
 }
+
