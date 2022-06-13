@@ -36,6 +36,7 @@ function App() {
       setWinner(userTurn ? "❌" : "⭕");
       return;
     }
+    if (testBoard.filter( v => v).length === 9) setWinner('Nobody');
   })
   }
   const selectCell = (e,index) => {
@@ -49,9 +50,18 @@ function App() {
     } 
   }
 
+  const newTurn = () => {
+    setBoard(emptyBoard);
+    setUserTurn(Math.random() < .5 ? true : false);
+    setMessage(`${userTurn ? "❌" : "⭕"} Goes First!`);
+    setWinner(null);
+  }
+
   return (
-    <div className="App">   
-      <h1>{!winner ? message : `${winner} Is the Winner!`}</h1>   
+    <div className="App"> 
+      {winner ? <div className="reset" onClick={newTurn} >New Game</div> : null}
+      <h1>{!winner ? message : `${winner} Wins!`}</h1>   
+      
       <div id="board">
       <Board board={board} selectCell={selectCell} />
       </div>

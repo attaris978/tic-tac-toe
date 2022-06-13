@@ -9,6 +9,19 @@ body {
   text-align: center;  
 }
 
+.reset {
+  font-size: .7rem;
+  position:absolute;
+  top: 2vh;
+  right: 2vw;
+  width:4rem;
+  color: #f92f60;
+  background-color: rgba(60,60,60,.8);
+  border: 1px solid rgba(255,255,255,.4);
+  font-weight: 900;
+  box-shadow: 0 1px 6px rgba(255, 255, 255, 0.12), 0 1px 4px rgba(255, 255, 255, 0.24);
+}
+
 #board {
   margin: auto;
   min-width: 150px;
