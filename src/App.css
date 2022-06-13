@@ -49,13 +49,13 @@ body {
   max-height:20vh;
   width:20vw;
   height:20vw;
-  background-color: lightblue;
+  background-color: rgb(30,30,80);
   border: .3vw solid navy;
   font-size: 10vh;
   transition: background-color 1s ease-out
 }
 .cell:hover {
-  background-color:purple;
+  background-color:white;
 }
 
 .left {

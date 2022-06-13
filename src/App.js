@@ -34,9 +34,8 @@ function App() {
     testSets.forEach( set => {    
     if (set.reduce( (p,v,i,a) => p && v && (i === 0 || v === a[i-1]) ? true : false, true )) {
       setWinner(userTurn ? "❌" : "⭕");
-      return;
-    }
-    if (testBoard.filter( v => v).length === 9) setWinner('Nobody');
+      
+    } else if (testBoard.filter( v => v).length === 9) setWinner('Nobody');
   })
   }
   const selectCell = (e,index) => {
