@@ -1,6 +1,7 @@
 import './App.css';
 import {useState, useEffect} from 'react';
 import Board from './components/Board';
+import ScoreBoard from './components/ScoreBoard';
 const emptyBoard = Array.from({length: 9});
 
 function App() {
@@ -68,7 +69,7 @@ function App() {
       <div id="board">
       <Board board={board} selectCell={selectCell} />
       </div>
-      <div><p>{`❌: ${score.x}|⭕: ${score.o}`}</p></div>
+      <ScoreBoard score={score} />
     </div>
   );
 }
