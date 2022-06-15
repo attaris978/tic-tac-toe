@@ -10,6 +10,7 @@ function App() {
   const [sets, setSets] = useState([]);
   const [message, setMessage] = useState(`${userTurn ? "❌" : "⭕"} Goes First!`);
   const [winner, setWinner] = useState(null);
+  const [score, setScore] = useState({x:0, o:0});
 
   const parseBoard = currentBoard => {
     let horizontal = Array.from({length: 3}, v => []);
@@ -34,7 +35,10 @@ function App() {
     testSets.forEach( set => {    
     if (set.reduce( (p,v,i,a) => p && v && (i === 0 || v === a[i-1]) ? true : false, true )) {
       setWinner(userTurn ? "❌" : "⭕");
-      
+      setScore({
+        x: userTurn ? score.x + 1 : score.x,
+        o: userTurn ? score.o : score.o + 1
+      })      
     } else if (testBoard.filter( v => v).length === 9) setWinner('Nobody');
   })
   }
@@ -64,6 +68,7 @@ function App() {
       <div id="board">
       <Board board={board} selectCell={selectCell} />
       </div>
+      <div><p>{`❌: ${score.x}|⭕: ${score.o}`}</p></div>
     </div>
   );
 }
