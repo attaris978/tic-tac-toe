@@ -7,3 +7,7 @@ export function setMessage (message) {
 export function setBoard (board) {
     return {type: actions.SET_BOARD, payload: board}
 }
+
+export function setUserTurn () {
+    return {type: actions.SWITCH_TURNS}
+}

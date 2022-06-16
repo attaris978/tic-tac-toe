@@ -2,7 +2,7 @@ import Cell from './Cell.js'
 import {connect} from 'react-redux';
 
 const mapStateToProps = state => {
-  const {board} = state;
+  const {board} = state.ticTacToe;
   return {
     board
   }

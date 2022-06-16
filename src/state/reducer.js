@@ -25,12 +25,15 @@ function ticTacToe (state = initTicTacToe(), action) {
         ...state,
           board: action.payload
       };
-    
-
+    case actions.SWITCH_TURNS:
+      return {
+        ...state,
+        userTurn: !state.userTurn
+      };
 
     default:
       return {...state}
   }
 }
 
-export default ticTacToe;
+export default combineReducers({ticTacToe});
