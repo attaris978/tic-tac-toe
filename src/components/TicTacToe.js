@@ -33,9 +33,6 @@ function TicTacToe(props) {
     let parsedBoard = [...horizontal, ...vertical, ...diagonal];
     return parsedBoard;
   }
-  // useEffect( () => {
-   
-  // },[board, winner])
 
   const winnerCheck = testBoard => {
     let testSets = parseBoard(testBoard);

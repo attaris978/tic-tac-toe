@@ -12,9 +12,8 @@ Play. Enjoy.
 
 <h1>What the Future Holds</h1>
 
-1) Add stateful record of player wins/losses
-2) Implement logic to allow the user to play against the "computer"
-3) Create an express server/api to allow for auth/login and data persistence
-4) Offload "computer's turn" logic to the server to prevent client-side reverse engineering
-5) Enable users to play against one another using the api
-6) Add Blackjack and merge into React-Router based app
+1) Implement logic to allow the user to play against the "computer"
+2) Create an express server/api to allow for auth/login and data persistence
+3) Offload "computer's turn" logic to the server to prevent client-side reverse engineering
+4) Enable users to play against one another using the api
+5) Add Blackjack and merge into React-Router based app
