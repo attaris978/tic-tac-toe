@@ -1,10 +1,10 @@
-import './App.css';
+import '../App.css';
 import {useState, useEffect} from 'react';
-import Board from './components/Board';
-import ScoreBoard from './components/ScoreBoard';
+import Board from './Board';
+import ScoreBoard from './ScoreBoard';
 const emptyBoard = Array.from({length: 9});
 
-function App() {
+function TicTacToe() {
 
   const [board, setBoard] = useState(emptyBoard);
   const [userTurn, setUserTurn] = useState(Math.random() < .5 ? true : false);
@@ -74,4 +74,4 @@ function App() {
   );
 }
 
-export default App;
+export default TicTacToe;
