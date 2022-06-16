@@ -1,15 +1,26 @@
 import '../App.css';
+import {connect} from 'react-redux';
 import {useState, useEffect} from 'react';
+import {setMessage, setBoard} from '../state/action-creators';
 import Board from './Board';
 import ScoreBoard from './ScoreBoard';
 const emptyBoard = Array.from({length: 9});
 
-function TicTacToe() {
+const mapStateToProps = state => {
+  const {message, board} = state;
+  return {
+    message,
+    board
+  }
+}
 
-  const [board, setBoard] = useState(emptyBoard);
+function TicTacToe(props) {
+  const {board, setBoard, message, setMessage} = props;
+
+  // const [board, setBoard] = useState(emptyBoard);
   const [userTurn, setUserTurn] = useState(Math.random() < .5 ? true : false);
   const [sets, setSets] = useState([]);
-  const [message, setMessage] = useState(`${userTurn ? "❌" : "⭕"} Goes First!`);
+  // const [message, setMessage] = useState(`${userTurn ? "❌" : "⭕"} Goes First!`);
   const [winner, setWinner] = useState(null);
   const [score, setScore] = useState({x:0, o:0});
 
@@ -67,11 +78,11 @@ function TicTacToe() {
       <h1>{!winner ? message : `${winner} Wins!`}</h1>   
       
       <div id="board">
-      <Board board={board} selectCell={selectCell} />
+      <Board selectCell={selectCell} />
       </div>
       <ScoreBoard score={score} />
     </div>
   );
 }
 
-export default TicTacToe;
+export default connect(mapStateToProps, {setMessage, setBoard})(TicTacToe);

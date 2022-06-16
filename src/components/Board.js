@@ -1,4 +1,12 @@
 import Cell from './Cell.js'
+import {connect} from 'react-redux';
+
+const mapStateToProps = state => {
+  const {board} = state;
+  return {
+    board
+  }
+}
 
 const Board = props => {
   const {board, selectCell} = props;
@@ -8,4 +16,4 @@ const Board = props => {
   return rows.map( (v,i) => <div key={`r${i}`} className="row">{v}</div>)
 }
 
-export default Board;
+export default connect(mapStateToProps, {})(Board);
