@@ -1,26 +1,25 @@
 import '../App.css';
 import {connect} from 'react-redux';
 import {useState, useEffect} from 'react';
-import {setMessage, setBoard, setUserTurn} from '../state/action-creators';
+import {setMessage, setBoard, setUserTurn, setWinner, setScore, resetBoard} from '../state/action-creators';
 import Board from './Board';
 import ScoreBoard from './ScoreBoard';
 const emptyBoard = Array.from({length: 9});
 
 const mapStateToProps = state => {
-  const {message, board, userTurn} = state.ticTacToe;
+  const {message, board, userTurn, winner, score} = state.ticTacToe;
   return {
     message,
     board,
-    userTurn
+    userTurn,
+    winner,
+    score
   }
 }
 
 function TicTacToe(props) {
-  const {board, setBoard, message, setMessage, userTurn, setUserTurn} = props;
-  // const [userTurn, setUserTurn] = useState(Math.random() < .5 ? true : false);
+  const {board, setBoard, message, setMessage, userTurn, setUserTurn, winner, setWinner, score, setScore, resetBoard} = props;
   const [sets, setSets] = useState([]);
-  const [winner, setWinner] = useState(null);
-  const [score, setScore] = useState({x:0, o:0});
 
   const parseBoard = currentBoard => {
     let horizontal = Array.from({length: 3}, v => []);
@@ -64,7 +63,7 @@ function TicTacToe(props) {
   }
 
   const newTurn = () => {
-    setBoard(emptyBoard);
+    resetBoard();
     setUserTurn(Math.random() < .5 ? true : false);
     setMessage(`${userTurn ? "❌" : "⭕"} Goes First!`);
     setWinner(null);
@@ -83,4 +82,4 @@ function TicTacToe(props) {
   );
 }
 
-export default connect(mapStateToProps, {setMessage, setBoard, setUserTurn})(TicTacToe);
+export default connect(mapStateToProps, {setMessage, setBoard, setUserTurn, setWinner, setScore, resetBoard})(TicTacToe);

@@ -11,3 +11,15 @@ export function setBoard (board) {
 export function setUserTurn () {
     return {type: actions.SWITCH_TURNS}
 }
+
+export function setWinner (winner) {
+    return {type: actions.SET_WINNER, payload: winner}
+}
+
+export function setScore (score) {
+    return {type: actions.SET_SCORE, payload: score}
+}
+
+export function resetBoard () {
+    return {type: actions.RESET_BOARD}
+}

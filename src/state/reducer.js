@@ -13,7 +13,6 @@ const initTicTacToe = () => {
   }
 }
 function ticTacToe (state = initTicTacToe(), action) {
-    console.log(state);
   switch(action.type) {
     case actions.SET_MESSAGE:
       return {
@@ -30,6 +29,22 @@ function ticTacToe (state = initTicTacToe(), action) {
         ...state,
         userTurn: !state.userTurn
       };
+    case actions.SET_WINNER:
+      return {
+        ...state,
+        winner: action.payload
+      };
+    case actions.SET_SCORE:
+      return {
+        ...state,
+        score: action.payload
+      };
+    case actions.RESET_BOARD:
+      return {
+        ...state,
+        board: Array.from({length: 9})
+      };
+
 
     default:
       return {...state}
