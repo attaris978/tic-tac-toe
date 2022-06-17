@@ -1,10 +1,8 @@
 import '../App.css';
 import {connect} from 'react-redux';
-import {useEffect} from 'react';
 import {setMessage, setBoard, setUserTurn, setWinner, setScore, resetBoard} from '../state/action-creators';
 import Board from './Board';
 import ScoreBoard from './ScoreBoard';
-const emptyBoard = Array.from({length: 9});
 
 const mapStateToProps = state => {
   const {message, board, userTurn, winner, score} = state.ticTacToe;
