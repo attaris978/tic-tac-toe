@@ -1,6 +1,6 @@
 import '../App.css';
 import {connect} from 'react-redux';
-import {setMessage, setBoard, setUserTurn, setWinner, setScore, resetBoard} from '../state/action-creators';
+import {setMessage, setBoard, setUserTurn, setWinner, setScore, resetBoard} from '../../state/action-creators';
 import Board from './Board';
 import ScoreBoard from './ScoreBoard';
 
