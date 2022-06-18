@@ -3,10 +3,12 @@ import * as actions from './action-types';
 
 const initTicTacToe = () => {
   let userTurn = Math.random() < .5 ? true : false;
+  let message = `${userTurn ? "❌" : "⭕"} Goes First!`;
+  let board = Array.from({length: 9})
   return{    
-    board: Array.from({length: 9}),
+    board,
     userTurn,
-    message: `${userTurn ? "❌" : "⭕"} Goes First!`,
+    message,
     sets: [],
     winner: null,
     score: {x:0, o:0}
