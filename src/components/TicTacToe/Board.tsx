@@ -1,6 +1,6 @@
 import React from 'react';
 import {StateStore, BoardState} from '../../types';
-import Cell from './Cell.jsx'
+import Cell from './Cell'
 import {connect} from 'react-redux';
 
 const mapStateToProps = (state: StateStore) => {
