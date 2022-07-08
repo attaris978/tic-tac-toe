@@ -7,6 +7,12 @@ export interface TicTacToeState {
     score: {x: number, o: number}
 }
 
+export interface CellState {
+    index: number,
+    board: string[],
+    selectCell: (e: any, index: number) => void
+}
+
 export enum ActionStrings {
     SET_MESSAGE = 'SET_MESSAGE',
     SET_BOARD = 'SET_BOARD',

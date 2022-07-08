@@ -1,4 +1,7 @@
-const Cell = (props) => {
+import React from 'react';
+import {CellState} from '../../types';
+
+const Cell = (props: CellState) => {
     const {index, board, selectCell} = props;
     const classes = 'cell '.concat(
         index % 3 === 0 ? 'left ' : '',
