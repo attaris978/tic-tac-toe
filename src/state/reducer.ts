@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
-import {TicTacToeState, Action} from '../types';
-import * as actions from './action-types';
+import {TicTacToeState, ActionStrings, Action} from '../types';
+// import * as actions from './action-types';
 
 const initTicTacToe = (): TicTacToeState => {
   let userTurn = Math.random() < .5 ? true : false;
@@ -17,32 +17,32 @@ const initTicTacToe = (): TicTacToeState => {
 }
 function ticTacToe (state = initTicTacToe(), action: Action) {
   switch(action.type) {
-    case actions.SET_MESSAGE:
+    case ActionStrings.SET_MESSAGE:
       return {
         ...state,
         message: action.payload
       };
-    case actions.SET_BOARD:
+    case ActionStrings.SET_BOARD:
       return {
         ...state,
           board: action.payload
       };
-    case actions.SWITCH_TURNS:
+    case ActionStrings.SWITCH_TURNS:
       return {
         ...state,
         userTurn: !state.userTurn
       };
-    case actions.SET_WINNER:
+    case ActionStrings.SET_WINNER:
       return {
         ...state,
         winner: action.payload
       };
-    case actions.SET_SCORE:
+    case ActionStrings.SET_SCORE:
       return {
         ...state,
         score: action.payload
       };
-    case actions.RESET_BOARD:
+    case ActionStrings.RESET_BOARD:
       return {
         ...state,
         board: Array.from({length: 9})
