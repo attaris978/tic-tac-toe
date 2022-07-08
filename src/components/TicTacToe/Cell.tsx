@@ -11,7 +11,7 @@ const Cell = (props: CellState) => {
  
     return (
         <div className={classes} 
-        onClick={e => selectCell(e,index)} 
+        onClick={e => selectCell(null,index)} 
         key={index}>
           <p>{board[index]}</p>
         </div>

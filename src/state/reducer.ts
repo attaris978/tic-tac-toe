@@ -1,16 +1,15 @@
 import {combineReducers} from 'redux';
 import {TicTacToeState, ActionStrings, Action} from '../types';
-// import * as actions from './action-types';
 
 const initTicTacToe = (): TicTacToeState => {
   let userTurn = Math.random() < .5 ? true : false;
   let message = `${userTurn ? "❌" : "⭕"} Goes First!`;
-  let board = Array.from({length: 9})
+  let board = Array.from({length: 9}, v => "")
   return{    
     board,
     userTurn,
     message,
-    sets: [],
+    // sets: [],
     winner: null,
     score: {x:0, o:0}
   }

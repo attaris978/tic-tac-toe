@@ -1,10 +1,12 @@
+import React from 'react';
 import '../App.css';
 import {connect} from 'react-redux';
+import {StateStore, TicTacToeState, TicTacToeActionFunctions} from '../../types';
 import {setMessage, setBoard, setUserTurn, setWinner, setScore, resetBoard} from '../../state/action-creators';
 import Board from './Board';
 import ScoreBoard from './ScoreBoard';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: StateStore) : TicTacToeState => {
   const {message, board, userTurn, winner, score} = state.ticTacToe;
   return {
     message,
@@ -15,14 +17,14 @@ const mapStateToProps = state => {
   }
 }
 
-function TicTacToe(props) {
+function TicTacToe (props : TicTacToeState & TicTacToeActionFunctions) {
   const {board, setBoard, message, setMessage, userTurn, setUserTurn, winner, setWinner, score, setScore, resetBoard} = props;
 
-  const parseBoard = currentBoard => {
-    let horizontal = Array.from({length: 3}, v => []);
-    let vertical = Array.from({length: 3}, v => []);
-    let diagonal = Array.from({length: 2}, v => []);
-    currentBoard.forEach( (v,i) => {
+  const parseBoard = (currentBoard: string[]) => {
+    let horizontal : string[][] = Array.from({length: 3}, v => []);
+    let vertical : string[][] = Array.from({length: 3}, v => []);
+    let diagonal : string[][] = Array.from({length: 2}, v => []);
+    currentBoard.forEach( (v, i) => {
       vertical[i % 3 === 0 ? 0 : i % 3 === 2 ? 2 : 1].push(v);      
       horizontal[Math.floor(i / 3)].push(v);
       if (i % 4 === 0) diagonal[0].push(v);
@@ -32,7 +34,7 @@ function TicTacToe(props) {
     return parsedBoard;
   }
 
-  const winnerCheck = testBoard => {
+  const winnerCheck = (testBoard : string[]) => {
     let testSets = parseBoard(testBoard);
     testSets.forEach( set => {    
     if (set.reduce( (p,v,i,a) => p && v && (i === 0 || v === a[i-1]) ? true : false, true )) {
@@ -44,7 +46,7 @@ function TicTacToe(props) {
     } else if (testBoard.filter( v => v).length === 9) setWinner('Nobody');
   })
   }
-  const selectCell = (e,index) => {
+  const selectCell = (e: MouseEvent | null, index: number) : void => {
     if (!board[index] && !winner) {
       let updatedBoard = [...board];
       updatedBoard[index] = userTurn ? "❌" : "⭕";
@@ -52,7 +54,7 @@ function TicTacToe(props) {
       winnerCheck(updatedBoard);
       if (!winner) setUserTurn(!userTurn);      
       if (!winner) setMessage(`${userTurn ? "⭕" : "❌" }'s Turn to Pick!`)       
-    } 
+    }
   }
 
   const newTurn = () => {
