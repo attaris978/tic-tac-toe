@@ -1,4 +1,6 @@
-import Cell from './Cell.js'
+import React from 'react';
+import {BoardState} from '../../types';
+import Cell from './Cell.jsx'
 import {connect} from 'react-redux';
 
 const mapStateToProps = state => {
